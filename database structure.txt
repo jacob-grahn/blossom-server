@@ -1,0 +1,57 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.3deb1ubuntu1.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jul 13, 2009 at 03:48 AM
+-- Server version: 5.0.51
+-- PHP Version: 5.2.4-2ubuntu5.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `blossom_users`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bans`
+--
+
+CREATE TABLE IF NOT EXISTS `bans` (
+  `ban_id` mediumint(9) NOT NULL auto_increment,
+  `banned_user_id` mediumint(9) NOT NULL,
+  `mod_id` mediumint(9) NOT NULL,
+  `ban_time` int(11) NOT NULL,
+  `expire_time` int(11) NOT NULL,
+  `banned_ip` varchar(100) NOT NULL,
+  PRIMARY KEY  (`ban_id`),
+  KEY `banned_user_id` (`banned_user_id`),
+  KEY `banned_ip` (`banned_ip`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` mediumint(9) NOT NULL auto_increment,
+  `name` varchar(50) NOT NULL,
+  `pass` varchar(40) NOT NULL,
+  `temp_pass` varchar(40) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `moderator` tinyint(1) NOT NULL default '0',
+  `register_time` int(11) NOT NULL,
+  `last_login_time` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `vars` text NOT NULL,
+  `secure_vars` text NOT NULL,
+  `register_ip` varchar(100) NOT NULL,
+  `last_login_ip` varchar(100) NOT NULL,
+  PRIMARY KEY  (`user_id`),
+  UNIQUE KEY `name` (`name`),
+  KEY `pass` (`pass`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
